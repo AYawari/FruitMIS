@@ -1,0 +1,4 @@
+/env
+/accounts/migrations
+/accounts/__pycache__
+/management/__pycache__
