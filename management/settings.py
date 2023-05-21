@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # custom app
     'accounts',
+    # 'django.contrib.messages',
 ]
 
 MIDDLEWARE = [
