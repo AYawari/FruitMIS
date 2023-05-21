@@ -9,9 +9,12 @@ class SiginUpForm(forms.ModelForm):
         model = models.User
         fields = ['username', 'email', 'password', 'confirm_password']
     
-    def check_password(self):
-        if self.cleaned_data.get('password') == self.cleaned_data.get('confirm_password'):
-            return self.cleaned_data.get('confirm_password')
-        else:
-            return forms.ValidationError('the Password with Confirm Password not matched')
-            
+    def clean_password_confirm(self):
+        password = self.cleaned_data.get['password']
+        confirm_password = self.cleaned_data.get('confirm_password')
+
+       
+        if password and confirm_password:
+            if password != confirm_password:
+                raise forms.ValidationError("The two password fields must match.")
+        return confirm_password
