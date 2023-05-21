@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # custom app
-    'accounts',
+    'accounts.apps.AccountsConfig',
+    'products.apps.ProductsConfig',
+    'branches.apps.BranchesConfig',
     # 'django.contrib.messages',
 ]
 
