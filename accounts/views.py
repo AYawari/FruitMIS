@@ -8,19 +8,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = forms.SiginUpForm(request.POST)
-        
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#         else:
-#             return HttpResponse('the data is not valid  try again')    
-#     else:
-#         form = forms.SiginUpForm()
-#         return render(request, 'accounts/singnup.html', {'form':form}
-
 
 
 def register(request):
@@ -42,26 +29,9 @@ def register(request):
         # Check if email is already taken
         if models.User.objects.filter(email=email).exists():
             raise ValidationError("Email already taken")
-
-        # # Other restrictions
-        # if len(password) < 4:
-        #     raise ValidationError("Password must be at least 8 characters long")
-        # if not any(char.isdigit() for char in password):
-        #     raise ValidationError("Password must contain at least one digit")
-        # if not any(char.isalpha() for char in password):
-        #     raise ValidationError("Password must contain at least one letter")
-
-        # Create user
         user = models.User.objects.create_user(username, email, password)
         user.save()
         return redirect('home')
-    
-
-        # Authenticate user and login
-        # user = authenticate(request,username=username, password=password)
-        # if user is not None:
-        #     login(request, user)
-        #     return redirect('home')
 
     return render(request, 'accounts/singnup.html')
 
@@ -87,4 +57,8 @@ def login_page(request):
 
               
     return render(request , 'accounts/login.html')    
+
+def Logout(request):
+    logout(request)
+    return redirect('login')
                  
